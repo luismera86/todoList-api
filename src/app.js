@@ -5,6 +5,9 @@ require("dotenv").config();
 const { dbConnection } = require("./config/dbConnection.config");
 const taskRoutes = require("./router/task.routes");
 const usersRoutes = require("./router/users.routes");
+const relations = require("./models/relations/userTask");
+
+relations();
 
 const app = express();
 
