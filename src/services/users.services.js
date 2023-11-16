@@ -1,11 +1,16 @@
 const User = require("../models/user.model");
 
 const getAll = async () => {
-  return await User.findAll({include: "tasks"});
+  return await User.findAll({ include: "tasks" });
 };
 const getById = async (id) => {
   const resp = await User.findByPk(id);
-  if(!resp) return "Not found"
+  if (!resp) return "Not found";
+  return resp;
+};
+
+const getByEmail = async (email) => {
+  const resp = await User.findOne({ where: { email } });
   return resp;
 };
 
@@ -16,15 +21,15 @@ const create = async (data) => {
 
 const update = async (id, data) => {
   const resp = await User.findByPk(id);
-  if (!resp) return "Not found"
-  
+  if (!resp) return "Not found";
+
   const dataUpdate = await User.update(data, { where: { id } });
   return dataUpdate;
 };
 
 const remove = async (id) => {
   const resp = await User.findByPk(id);
-  if(!resp) return "Not found"
+  if (!resp) return "Not found";
   return await User.destroy({ where: { id } });
 };
 
@@ -34,4 +39,5 @@ module.exports = {
   create,
   update,
   remove,
+  getByEmail
 };

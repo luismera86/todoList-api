@@ -1,6 +1,7 @@
 const usersServices = require("../services/users.services");
 const getAll = async (req, res) => {
   try {
+    console.log("entrando");
     const result = await usersServices.getAll();
     res.status(200).json({ status: "success", payload: result });
   } catch (error) {
@@ -8,6 +9,7 @@ const getAll = async (req, res) => {
     res.status(500).json({ error: "Server internal error" });
   }
 };
+
 const getById = async (req, res) => {
   const { id } = req.params;
   try {
